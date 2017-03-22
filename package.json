@@ -1,0 +1,15 @@
+{
+  "name": "vue-meteor-demo",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.20.0",
+    "meteor-node-stubs": "~0.2.4",
+    "vue": "^2.2.4",
+    "vue-meteor-tracker": "^1.1.2",
+    "vue-router": "^2.3.0",
+    "vuex": "^2.2.1"
+  }
+}
