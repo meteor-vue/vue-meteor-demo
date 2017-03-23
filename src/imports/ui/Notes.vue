@@ -2,8 +2,11 @@
   <div class="notes">
     <input v-model="newNote" placeholder="Add a note" @keyup.enter="addNote" />
     <div class="note" v-for="note in notes">
-      <div class="actions"><button @click="removeNote(note)">Delete note</button></div>
       <div class="text">{{ note.text }}</div>
+      <div class="actions">
+        <button @click="removeNote(note)">Delete note</button>
+        <span class="date">{{ note.created | date }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -25,7 +28,9 @@ export default {
       'notes': [],
     },
     notes () {
-      return Notes.find()
+      return Notes.find({}, {
+        sort: { created: -1 },
+      })
     },
   },
 
@@ -56,8 +61,26 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .note {
-  margin-top: 32px;
+  padding: 32px 0;
+
+  &:not(:last-child) {
+    border-bottom: solid 1px fade(black, 10%);
+  }
+
+  .text {
+    margin-bottom: 12px;
+  }
+
+  .date {
+    margin-left: 16px;
+    color: lighten(black, 70%);
+  }
+}
+
+input {
+  display: block;
+  width: 100%;
 }
 </style>

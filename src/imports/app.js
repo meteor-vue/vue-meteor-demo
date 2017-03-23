@@ -4,6 +4,11 @@ import Vue from 'vue'
 import VueMeteorTracker from 'vue-meteor-tracker'
 Vue.use(VueMeteorTracker)
 
+import * as filters from './filters'
+for (const key in filters) {
+  Vue.filter(key, filters[key])
+}
+
 import App from './ui/App.vue'
 import router from './router'
 
