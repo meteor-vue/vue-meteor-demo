@@ -3,31 +3,32 @@ import './api/publications'
 import { VueSSR } from 'meteor/akryum:vue-ssr'
 import CreateApp from './app'
 
-// You can change the rendered HTML template
+const isDev = process.env.NODE_ENV !== 'production'
 
-/* VueSSR.template = `
-<div class="app-wrapper">
-  <!--vue-ssr-outlet-->
-</div>
-` */
+// Simple createApp
 
-// Simple create app
+VueSSR.createApp = function (context) {
+  const { app, router, store } = CreateApp()
 
-VueSSR.createApp = function ({ url }) {
-  const { app, router } = CreateApp()
-  // Set the URL in the router
-  router.push(url)
+  // set router's location
+  router.push(context.url)
+
   return app
 }
 
-// Returning a promise works too
+/*
 
-/* VueSSR.createApp = function ({ url }) {
+// This will be called each time the app is rendered
+VueSSR.createApp = function (context) {
+  const s = isDev && Date.now()
+
   return new Promise((resolve, reject) => {
-    const { app, router } = CreateApp()
-    // Set the URL in the router
-    router.push(url)
+    const { app, router, store } = CreateApp()
 
+    // set router's location
+    router.push(context.url)
+
+    // wait until router has resolved possible async hooks
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
 
@@ -36,7 +37,31 @@ VueSSR.createApp = function ({ url }) {
         reject({ code: 404 })
       }
 
-      resolve(app)
+      // Call preFetch hooks on components matched by the route.
+      // A preFetch hook dispatches a store action and returns a Promise,
+      // which is resolved when the action is complete and store state has been
+      // updated.
+      Promise.all(matchedComponents.map(component => {
+        return component.preFetch && component.preFetch(store)
+      })).then(() => {
+        isDev && console.log(`data pre-fetch: ${Date.now() - s}ms`)
+
+        // After all preFetch hooks are resolved, our store is now
+        // filled with the state needed to render the app.
+        // Expose the state on the render context, and let the request handler
+        // inline the state in the HTML response. This allows the client-side
+        // store to pick-up the server-side state without having to duplicate
+        // the initial data fetching on the client.
+        context.injectData = {
+          vuex: store.state,
+        }
+
+        console.log(store.state)
+
+        resolve(app)
+      }).catch(reject)
     })
   })
-} */
+}
+
+*/

@@ -1,0 +1,26 @@
+@import "imports";
+
+.right-panel-enter-active,
+.right-panel-leave-active {
+  overflow: hidden;
+
+  .backdrop {
+    transition: opacity .5s;
+  }
+
+  .panel {
+    transition: transform .5s @ease, box-shadow .5s;
+  }
+}
+
+.right-panel-enter,
+.right-panel-leave-to {
+  .backdrop {
+    opacity: 0;
+  }
+
+  .panel {
+    transform: translateX(100%);
+    box-shadow: none;
+  }
+}

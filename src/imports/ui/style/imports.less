@@ -1,0 +1,16 @@
+@app-color: #40b883;
+@page-background: darken(white, 2%);
+
+@ease: cubic-bezier(0.4, 0.0, 0.2, 1);
+
+.bounds(@d: 0) {
+  top: @d;
+  bottom: @d;
+  left: @d;
+  right: @d;
+}
+
+.overlay() {
+  position: absolute;
+  .bounds(0);
+}

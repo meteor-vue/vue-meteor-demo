@@ -1,0 +1,81 @@
+@import "imports";
+
+@import "transitions";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: @page-background;
+}
+
+body,
+input,
+textarea,
+button {
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  color: @app-color;
+  text-decoration: none;
+}
+
+main {
+  max-width: 800px;
+  margin: 64px auto;
+  padding: 42px;
+  background: white;
+}
+
+h1 {
+  font-weight: lighter;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+input {
+  border: none;
+  background: white;
+  border-bottom: solid 1px darken(white, 30%);
+  padding: 8px 12px;
+
+  &:focus {
+    border-bottom-color: @app-color;
+  }
+}
+
+button {
+  padding: 8px 12px;
+  background: @app-color;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten(@app-color, 10%);
+  }
+}
+
+.backdrop {
+  background: fade(black, 50%);
+  .overlay;
+}
+
+.panel {
+  background: white;
+  box-shadow: 0 0 20px fade(black, 30%);
+}
+
+.empty-text {
+  text-align: center;
+  margin: 64px 24px;
+  font-size: 1.2rem;
+  color: fade(black, 30%);
+}
