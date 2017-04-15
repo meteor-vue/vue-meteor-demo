@@ -1,13 +1,17 @@
 <template>
   <div class="notes">
     <input v-model="newNote" placeholder="Add a note" @keyup.enter="addNote" />
-    <div class="note" v-for="note in notes" :class="{ many: notes.length > 1 }">
-      <div class="text">{{ note.text }}</div>
-      <div class="actions">
-        <button @click="event => removeNote(note)">Delete note</button>
-        <span class="date">{{ note.created | date }}</span>
+    <div class="notes">
+      <div class="note" v-for="note in notes" :class="{ many: notes.length > 1 }">
+        <div class="text">{{ note.text }}</div>
+        <div class="actions">
+          <button @click="event => removeNote(note)">Delete note</button>
+          <span class="date">{{ note.created | date }}</span>
+        </div>
       </div>
     </div>
+    <div v-observe-visibility="handleVisibility"></div>
+    <div v-if="!$subReady.notes" class="loading">Loading...</div>
   </div>
 </template>
 
@@ -20,12 +24,15 @@ export default {
     return {
       newNote: '',
       notes: [],
+      limit: 5,
     }
   },
 
   meteor: {
     subscribe: {
-      'notes': [],
+      'notes' () {
+        return [this.limit]
+      },
     },
     notes () {
       return Notes.find({}, {
@@ -55,6 +62,12 @@ export default {
         })
       } catch (e) {
         console.error(e)
+      }
+    },
+
+    handleVisibility (visible) {
+      if (visible && this.$subReady.notes) {
+        this.limit += 5
       }
     },
   },

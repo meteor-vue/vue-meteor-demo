@@ -20,6 +20,9 @@ Vue.use(VueGoogleMaps, {
   },
 })
 
+import VueObserveVisibility from 'vue-observe-visibility'
+Vue.use(VueObserveVisibility)
+
 import * as filters from './filters'
 for (const key in filters) {
   Vue.filter(key, filters[key])
