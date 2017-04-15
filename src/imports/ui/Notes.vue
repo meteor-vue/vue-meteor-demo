@@ -1,10 +1,10 @@
 <template>
   <div class="notes">
     <input v-model="newNote" placeholder="Add a note" @keyup.enter="addNote" />
-    <div class="note" v-for="note in notes">
+    <div class="note" v-for="note in notes" :class="{ many: notes.length > 1 }">
       <div class="text">{{ note.text }}</div>
       <div class="actions">
-        <button @click="removeNote(note)">Delete note</button>
+        <button @click="event => removeNote(note)">Delete note</button>
         <span class="date">{{ note.created | date }}</span>
       </div>
     </div>
