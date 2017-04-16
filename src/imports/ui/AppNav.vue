@@ -4,6 +4,7 @@
     <router-link :to="{ name: 'home' }" exact>Home</router-link>
     <router-link :to="{ name: 'notes' }">Notes</router-link>
     <router-link :to="{ name: 'map' }">Map</router-link>
+    <router-link :to="{ name: 'apollo' }">Apollo</router-link>
     <router-link :to="{ name: 'about' }">About</router-link>
     <div class="actions">
       <button @click="openCart"><i class="material-icons">shopping_cart</i></button>

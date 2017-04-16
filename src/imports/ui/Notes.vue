@@ -29,7 +29,7 @@ export default {
   },
 
   meteor: {
-    subscribe: {
+    $subscribe: {
       'notes' () {
         return [this.limit]
       },
