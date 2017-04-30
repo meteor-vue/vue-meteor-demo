@@ -24,9 +24,7 @@ const mixin = {
           description
         }
       }`,
-      result () {
-        console.log('allPost query', this.$apollo.queries.allPosts)
-      },
+      prefetch: true,
     },
   },
 }

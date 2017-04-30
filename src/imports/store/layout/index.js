@@ -2,9 +2,9 @@
 export default {
   namespaced: true,
 
-  state: {
+  state: () => ({
     showCart: false,
-  },
+  }),
 
   getters: {
     showCart: state => state.showCart,

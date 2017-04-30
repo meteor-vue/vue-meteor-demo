@@ -6,11 +6,26 @@ import VueApollo from 'vue-apollo'
 Vue.use(VueApollo)
 
 // Create the apollo client
-export function createApolloClient (initialState) {
+export function createApolloClient (ssr = false) {
+  let initialState
+
+  if (!ssr && typeof window !== 'undefined') {
+    const state = window.__APOLLO_STATE__
+    if (state) {
+      initialState = state.defaultClient
+    }
+  }
+
   const apolloClient = new ApolloClient({
     networkInterface: createNetworkInterface({
       uri: 'https://api.graph.cool/simple/v1/cj1jvw20v3n310152sv0sirl7',
       transportBatching: true,
+    }),
+    ...(ssr ? {
+      ssrMode: true,
+    } : {
+      initialState,
+      ssrForceFetchDelay: 100,
     }),
   })
 

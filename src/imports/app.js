@@ -37,7 +37,7 @@ import App from './ui/App.vue'
 import routes from './routes'
 import storeOptions from './store'
 
-function createApp () {
+function createApp (context) {
   const router = new VueRouter({
     mode: 'history',
     routes,
@@ -50,7 +50,7 @@ function createApp () {
   sync(store, router)
 
   // Apollo
-  const apolloClient = createApolloClient()
+  const apolloClient = createApolloClient(context.ssr)
   const apolloProvider = new VueApollo({
     defaultClient: apolloClient,
   })
@@ -65,6 +65,7 @@ function createApp () {
     }),
     router,
     store,
+    apolloProvider,
   }
 }
 
