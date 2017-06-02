@@ -22,7 +22,6 @@ function createApp (context) {
 
   const supplyCache = {}
   const suppliedStoreOptions = injectSupply(storeOptions, supplyCache)
-
   const store = new Vuex.Store(suppliedStoreOptions)
 
   // sync the router with the vuex store.
@@ -41,12 +40,12 @@ function createApp (context) {
       router,
       store,
       apolloProvider,
+      supplyCache,
       ...App,
     }),
     router,
     store,
     apolloProvider,
-    supplyCache,
   }
 }
 

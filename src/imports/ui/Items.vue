@@ -1,5 +1,6 @@
 <template>
   <div class="items">
+    <h1>{{ count }} Item(s)</h1>
     <div v-for="item of items">
       {{ item.name }}
     </div>
