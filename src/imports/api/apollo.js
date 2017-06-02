@@ -1,9 +1,4 @@
-import Vue from 'vue'
 import { ApolloClient, createNetworkInterface } from 'apollo-client'
-import VueApollo from 'vue-apollo'
-
-// Install the vue plugin
-Vue.use(VueApollo)
 
 // Create the apollo client
 export function createApolloClient (ssr = false) {
