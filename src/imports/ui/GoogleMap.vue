@@ -39,7 +39,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="stylus" scoped>
 .search {
   margin-bottom: 12px;
 }
@@ -48,5 +48,10 @@ export default {
 .pano {
   width: 100%;
   height: 300px;
+
+  >>> .vue-map,
+  >>> .vue-street-view-pano {
+    height: 100%;
+  }
 }
 </style>
