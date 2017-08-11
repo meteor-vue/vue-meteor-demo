@@ -1,5 +1,15 @@
-<template>
+<!-- <template>
   <div class="home">
     <h1>#404</h1>
   </div>
-</template>
+</template> -->
+
+<script>
+export default {
+  render (h) {
+    return <div class="home">
+      <h1>#404</h1>
+    </div>
+  }
+}
+</script>

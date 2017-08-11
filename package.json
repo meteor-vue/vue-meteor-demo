@@ -22,5 +22,9 @@
     "vue2-google-maps": "^0.8.0",
     "vuex": "^2.2.1",
     "vuex-router-sync": "^4.1.2"
+  },
+  "devDependencies": {
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0"
   }
 }
