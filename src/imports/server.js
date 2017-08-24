@@ -52,10 +52,12 @@ VueSSR.createApp = function (context) {
         }),
         // Apollo prefetch
         apolloProvider.prefetchAll({
+          /* Context object */
           route: router.currentRoute,
+          // You could also add the store here
         }, matchedComponents),
       ]).then(() => {
-        isDev && console.log(`data pre-fetch: ${Date.now() - s}ms`)
+        isDev && console.log(`[SSR] data pre-fetch: ${Date.now() - s}ms`)
 
         // After all preFetch hooks are resolved, our store is now
         // filled with the state needed to render the app.
