@@ -19,24 +19,21 @@
   </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      description: 'Paris',
-      position: {lat:48.85661400000001, lng:2.3522219000000177},
-    }
-  },
-  methods: {
-    setPlace (place) {
-      this.place = place
-      this.position = {
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng(),
-      }
-    },
-  },
-}
+<script lang="coffee">
+export default
+  data: ->
+    return
+      description: 'Paris'
+      position:
+        lat: 48.85661400000001
+        lng: 2.3522219000000177
+
+  methods:
+    setPlace: (place) ->
+      @place = place
+      @position =
+        lat: place.geometry.location.lat()
+        lng: place.geometry.location.lng()
 </script>
 
 <style lang="stylus" scoped>
