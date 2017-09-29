@@ -1,21 +1,29 @@
 <template>
   <div class="map">
-    <div class="search">
-      <gmap-autocomplete
-        :value="description"
-        @place_changed="setPlace"
-        placeholder="Enter location" />
+    <div class="toolbar">
+      <button
+        :disabled="!userPosition"
+        @click="centerOnUser">
+        Center on user
+      </button>
     </div>
-    <gmap-map
+
+    <!-- Map -->
+    <googlemaps-map
       class="gmap"
-      :center="position"
-      :zoom="7"
-      map-type-id="terrain" />
-    <gmap-street-view-panorama
-      class="pano"
-      :position="position"
-      :pov="{heading: 0, pitch: 10}"
-      :zoom="1" />
+      :center.sync="center"
+      :zoom.sync="zoom"
+      map-type-id="terrain">
+
+      <!-- User Position -->
+			<googlemaps-user-position
+				@update:position="setUserPosition" />
+
+			<!-- Marker -->
+			<googlemaps-marker
+				title="Paris"
+				:position="{ lat: 48.8735, lng: 2.2951 }" />
+    </googlemaps-map>
   </div>
 </template>
 
@@ -23,32 +31,26 @@
 export default
   data: ->
     return
-      description: 'Paris'
-      position:
+      center:
         lat: 48.85661400000001
         lng: 2.3522219000000177
-
+      userPosition: null
+      zoom: 12
   methods:
-    setPlace: (place) ->
-      @place = place
-      @position =
-        lat: place.geometry.location.lat()
-        lng: place.geometry.location.lng()
+    centerOnUser: ->
+      if @userPosition
+        @center = @userPosition
+    setUserPosition: (position) ->
+      @userPosition = position
 </script>
 
 <style lang="stylus" scoped>
-.search {
-  margin-bottom: 12px;
+.toolbar {
+  margin-bottom: 24px;
 }
 
-.gmap,
-.pano {
+.gmap {
   width: 100%;
   height: 300px;
-
-  >>> .vue-map,
-  >>> .vue-street-view-pano {
-    height: 100%;
-  }
 }
 </style>

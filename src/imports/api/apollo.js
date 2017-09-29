@@ -9,6 +9,7 @@ export function createApolloClient (ssr = false) {
     if (state) {
       initialState = state.defaultClient
     }
+    console.log(initialState)
   }
 
   const apolloClient = new ApolloClient({

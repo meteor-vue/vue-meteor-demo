@@ -57,7 +57,7 @@ VueSSR.createApp = function (context) {
           // You could also add the store here
         }, matchedComponents),
       ]).then(() => {
-        isDev && console.log(`[SSR] data pre-fetch: ${Date.now() - s}ms`)
+        isDev && console.log(`[SSR] Data prefetch: ${Date.now() - s}ms`)
 
         // After all preFetch hooks are resolved, our store is now
         // filled with the state needed to render the app.

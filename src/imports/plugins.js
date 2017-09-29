@@ -12,11 +12,11 @@ Vue.use(VueMeteorTracker)
 Vue.config.meteor.freeze = true
 console.log('tracker installed')
 
-import * as VueGoogleMaps from 'vue2-google-maps/dist/vue-google-maps-stubbed'
+import VueGoogleMaps from 'vue-googlemaps'
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyCV908coKxEB_GcWuGucl79Zy_rIG4GQSI',
-    libraries: 'places',
+    apiKey: 'AIzaSyCV908coKxEB_GcWuGucl79Zy_rIG4GQSI',
+    libraries: ['places'],
   },
 })
 
