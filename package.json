@@ -5,27 +5,27 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "apollo-client": "^1.0.3",
-    "babel-runtime": "^6.20.0",
-    "bcrypt": "^1.0.2",
-    "intersection-observer": "^0.4.0",
-    "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.4",
-    "marker-clusterer-plus": "^2.1.4",
-    "meteor-node-stubs": "~0.2.4",
-    "moment": "^2.18.1",
-    "vue": "^2.4.1",
-    "vue-apollo": "^2.1.0-beta.9",
-    "vue-meteor-tracker": "^1.2.0",
-    "vue-observe-visibility": "^0.3.1",
-    "vue-router": "^2.3.0",
-    "vue-supply": "^0.3.0",
-    "vue-googlemaps": "^0.0.5",
-    "vuex": "^2.2.1",
-    "vuex-router-sync": "^4.1.2"
+    "apollo-client": "~1.9.3",
+    "babel-runtime": "~6.26.0",
+    "bcrypt": "~1.0.2",
+    "intersection-observer": "~0.4.0",
+    "isomorphic-fetch": "~2.2.1",
+    "lodash": "~4.17.4",
+    "marker-clusterer-plus": "~2.1.4",
+    "meteor-node-stubs": "~0.3.2",
+    "moment": "~2.19.1",
+    "vue": "2.5.2",
+    "vue-apollo": "~2.1.0-rc.8",
+    "vue-meteor-tracker": "~1.2.0",
+    "vue-observe-visibility": "~0.3.1",
+    "vue-router": "~3.0.1",
+    "vue-supply": "~0.3.0",
+    "vue-googlemaps": "~0.0.6",
+    "vuex": "~3.0.0",
+    "vuex-router-sync": "~5.0.0"
   },
   "devDependencies": {
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-plugin-transform-vue-jsx": "^3.5.0"
+    "babel-plugin-syntax-jsx": "~6.18.0",
+    "babel-plugin-transform-vue-jsx": "~3.5.0"
   }
 }
