@@ -45,12 +45,10 @@ export default
 </script>
 
 <style lang="stylus" scoped>
-.toolbar {
-  margin-bottom: 24px;
-}
+.toolbar
+  margin-bottom 24px
 
-.gmap {
-  width: 100%;
-  height: 300px;
-}
+.gmap
+  width 100%
+  height 300px
 </style>
