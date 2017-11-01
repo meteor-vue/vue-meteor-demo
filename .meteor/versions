@@ -1,7 +1,7 @@
 accounts-base@1.4.0
 accounts-password@1.5.0
 akryum:npm-check@0.0.4
-akryum:vue-coffee@0.1.0
+akryum:vue-coffee@0.2.0
 akryum:vue-component@0.12.2
 akryum:vue-component-dev-client@0.3.0
 akryum:vue-component-dev-server@0.0.11
@@ -24,8 +24,8 @@ caching-html-compiler@1.1.2
 callback-hook@1.0.10
 check@1.2.5
 chuangbo:cookie@1.1.0
-coffeescript@1.12.7_3
-coffeescript-compiler@1.12.7_3
+coffeescript@1.12.6_1
+coffeescript-compiler@2.0.2_1
 cosmos:browserify@0.10.0
 ddp@1.4.0
 ddp-client@2.2.0
