@@ -2,8 +2,10 @@
   <transition name="right-panel" duration="500">
     <div class="cart-overlay">
       <div class="backdrop" @click="close" />
-      <div class="cart panel">
-        <div class="empty-text">Your cart is empty</div>
+      <div class="panel" :class="$style.cart">
+        <div class="empty-text" :class="$style.meow">
+          Your cart is <span :class="foo.bar">empty</span>
+          </div>
       </div>
     </div>
   </transition>
@@ -13,6 +15,10 @@
 import { mapActions } from 'vuex'
 
 export default {
+  created () {
+    console.log(this.$style)
+  },
+
   methods: {
     ...mapActions('layout', [
       'showCart'
@@ -31,7 +37,9 @@ export default {
 .cart-overlay {
   .overlay;
 }
+</style>
 
+<style lang="less" module>
 .cart {
   position: absolute;
   top: 0;
@@ -39,5 +47,15 @@ export default {
   right: 0;
   width: 100%;
   max-width: 500px;
+}
+
+.meow {
+  color: grey;
+}
+</style>
+
+<style lang="less" module="foo">
+.bar {
+  color: black;
 }
 </style>
