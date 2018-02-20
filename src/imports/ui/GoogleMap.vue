@@ -36,10 +36,12 @@ export default
         lng: 2.3522219000000177
       userPosition: null
       zoom: 12
+
   methods:
     centerOnUser: ->
       if @userPosition
         @center = @userPosition
+
     setUserPosition: (position) ->
       @userPosition = position
 </script>
