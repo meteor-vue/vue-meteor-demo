@@ -36,21 +36,21 @@ export default
         lng: 2.3522219000000177
       userPosition: null
       zoom: 12
+
   methods:
     centerOnUser: ->
       if @userPosition
         @center = @userPosition
+
     setUserPosition: (position) ->
       @userPosition = position
 </script>
 
 <style lang="stylus" scoped>
-.toolbar {
-  margin-bottom: 24px;
-}
+.toolbar
+  margin-bottom 24px
 
-.gmap {
-  width: 100%;
-  height: 300px;
-}
+.gmap
+  width 100%
+  height 300px
 </style>

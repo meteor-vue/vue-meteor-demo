@@ -65,6 +65,11 @@ button {
   }
 }
 
+button[disabled=disabled], button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .backdrop {
   background: fade(black, 50%);
   .overlay;
