@@ -1,26 +1,34 @@
 <template>
   <div class="notes">
     <h1>Notes</h1>
-    <div>
-      <router-link :to="{ name: 'notes-components' }">With Meteor components</router-link>
-    </div>
-    <div>
-      <input v-model="newNote" placeholder="Add a note" @keyup.enter="addNote" />
-    </div>
+    <input v-model="newNote" placeholder="Add a note" @keyup.enter="addNote" />
     <div class="actions">
       <button @click="sort = !sort">Toggle sort</button>
     </div>
-    <div class="notes">
-      <div v-for="note in notes" class="note" :class="{ many: notes.length > 1 }">
-        <div class="text">{{ note.text }}</div>
-        <div class="actions">
-          <button @click="event => removeNote(note)">Delete note</button>
-          <span class="date">{{ note.created | date }}</span>
-        </div>
-      </div>
-    </div>
-    <div v-observe-visibility="handleVisibility"></div>
-    <div v-if="!$subReady.notes" class="loading">Loading...</div>
+
+    <MeteorSub
+      name="notes"
+      :parameters="[limit]"
+    >
+      <template slot-scope="{ loading }">
+        <MeteorData
+          :query="findNotes"
+          class="notes"
+        >
+          <template slot-scope="{ data: notes }">
+            <div v-for="note in notes" class="note" :class="{ many: notes.length > 1 }">
+              <div class="text">{{ note.text }}</div>
+              <div class="actions">
+                <button @click="event => removeNote(note)">Delete note</button>
+                <span class="date">{{ note.created | date }}</span>
+              </div>
+            </div>
+          </template>
+        </MeteorData>
+        <div v-observe-visibility="handleVisibility"></div>
+        <div v-if="loading" class="loading">Loading...</div>
+      </template>
+    </MeteorSub>
   </div>
 </template>
 
@@ -37,26 +45,13 @@ export default {
     }
   },
 
-  meteor: {
-    $subscribe: {
-      'notes' () {
-        return [this.limit]
-      },
-    },
-    notes () {
+  methods: {
+    findNotes () {
       return Notes.find({}, {
         sort: { created: this.sort ? -1 : 1 },
       })
     },
-  },
 
-  watch: {
-    '$subReady.notes' (value) {
-      console.log(value)
-    },
-  },
-
-  methods: {
     async addNote () {
       if (this.newNote) {
         try {

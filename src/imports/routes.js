@@ -4,6 +4,7 @@ import NotFound from './ui/NotFound.vue'
 import Home from './ui/Home.vue'
 import Items from './ui/Items.vue'
 import Notes from './ui/Notes.vue'
+import NotesComponents from './ui/NotesComponents.vue'
 import GoogleMap from './ui/GoogleMap.vue'
 import Apollo from './ui/Apollo.vue'
 import Async from './ui/Async.vue'
@@ -13,6 +14,7 @@ export default [
   { path: '/', name: 'home', component: Home },
   { path: '/shop', name: 'shop', component: Items },
   { path: '/notes', name: 'notes', component: Notes, meta: { showCart: true } },
+  { path: '/notes-components', name: 'notes-components', component: NotesComponents },
   { path: '/map', name: 'map', component: GoogleMap },
   { path: '/apollo', name: 'apollo', component: Apollo },
   { path: '/async', name: 'async', component: Async },

@@ -5,7 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.38",
+    "@babel/runtime": "^7.0.0-beta.46",
     "apollo-client": "^1.9.3",
     "bcrypt": "^1.0.3",
     "intersection-observer": "^0.4.3",
@@ -14,10 +14,10 @@
     "marker-clusterer-plus": "^2.1.4",
     "meteor-node-stubs": "^0.3.2",
     "moment": "^2.20.1",
-    "vue": "2.5.13",
+    "vue": "^2.5.16",
     "vue-apollo": "^2.1.0-rc.8",
     "vue-googlemaps": "^0.0.6",
-    "vue-meteor-tracker": "^1.2.0",
+    "vue-meteor-tracker": "^2.0.0-beta.1",
     "vue-observe-visibility": "^0.3.1",
     "vue-router": "^3.0.1",
     "vue-supply": "^0.3.0",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-plugin-transform-vue-jsx": "^3.5.1"
+    "babel-plugin-transform-vue-jsx": "^3.5.1",
+    "vue-template-compiler": "^2.5.16"
   }
 }
