@@ -5,6 +5,7 @@ import Home from './ui/Home.vue'
 import Items from './ui/Items.vue'
 import Notes from './ui/Notes.vue'
 import NotesComponents from './ui/NotesComponents.vue'
+import NotesComputed from './ui/NotesComputed.vue'
 import GoogleMap from './ui/GoogleMap.vue'
 import Apollo from './ui/Apollo.vue'
 import Async from './ui/Async.vue'
@@ -15,6 +16,7 @@ export default [
   { path: '/shop', name: 'shop', component: Items },
   { path: '/notes', name: 'notes', component: Notes, meta: { showCart: true } },
   { path: '/notes-components', name: 'notes-components', component: NotesComponents },
+  { path: '/notes-computed', name: 'notes-computed', component: NotesComputed },
   { path: '/map', name: 'map', component: GoogleMap },
   { path: '/apollo', name: 'apollo', component: Apollo },
   { path: '/async', name: 'async', component: Async },

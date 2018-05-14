@@ -2,10 +2,6 @@
   <div class="notes">
     <h1>Notes</h1>
     <div>
-      <router-link :to="{ name: 'notes-components' }">With Meteor components</router-link>
-      <router-link :to="{ name: 'notes-computed' }">With Meteor computed</router-link>
-    </div>
-    <div>
       <input v-model="newNote" placeholder="Add a note" @keyup.enter="addNote" />
     </div>
     <div class="actions">
@@ -39,20 +35,19 @@ export default {
     }
   },
 
-  meteor: {
-    $subscribe: {
-      'notes' () {
-        return [this.limit]
-      },
-    },
-    notes () {
-      return Notes.find({}, {
-        sort: { created: this.sort ? -1 : 1 },
-      })
-    },
+  created () {
+    // Not SSR friendly (for now)
+    this.$subscribe('notes', () => [this.limit])
   },
 
   computed: {
+    notes () {
+      // Not SSR friendly (for now)
+      return this.$autorun(() => Notes.find({}, {
+        sort: { created: this.sort ? -1 : 1 },
+      }))
+    },
+
     firstNote () {
       return this.notes.length && this.notes[0]
     },
