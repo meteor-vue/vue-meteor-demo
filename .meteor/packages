@@ -22,9 +22,10 @@ akryum:vue-less
 akryum:vue-ssr
 aldeed:simple-schema
 deanius:promise
-dynamic-import@0.3.0
+dynamic-import@0.3.1
 akryum:vue-stylus
 akryum:vue-sass
 akryum:vue-coffee
 akryum:vue-pug
 accounts-password@1.5.0
+underscore
