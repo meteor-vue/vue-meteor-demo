@@ -5,10 +5,13 @@
     <div class="actions">
       <button @click="sort = !sort">Toggle sort</button>
     </div>
+    <div>
+      <input v-model="search" placeholder="Search...">
+    </div>
 
     <MeteorSub
       name="notes"
-      :parameters="[limit]"
+      :parameters="[search]"
     >
       <template slot-scope="{ loading }">
         <MeteorData
@@ -40,7 +43,7 @@ export default {
   data () {
     return {
       newNote: '',
-      limit: 5,
+      search: '',
       sort: true,
     }
   },

@@ -4,12 +4,6 @@ import { Items } from '../api/collections'
 export default {
   extends: base,
 
-  data () {
-    return {
-      items: [],
-    }
-  },
-
   meteor: {
     $subscribe: {
       'items': [],
@@ -17,6 +11,12 @@ export default {
 
     items () {
       return Items.find({})
+    },
+  },
+
+  watch: {
+    items (value) {
+      console.log('items watch', value)
     },
   },
 }

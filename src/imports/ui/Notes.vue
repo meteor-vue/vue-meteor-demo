@@ -11,6 +11,9 @@
     <div class="actions">
       <button @click="sort = !sort">Toggle sort</button>
     </div>
+    <div>
+      <input v-model="search" placeholder="Search...">
+    </div>
     <div class="notes">
       <div v-for="note in notes" class="note" :class="{ many: notes.length > 1 }">
         <div class="text">{{ note.text }}</div>
@@ -22,7 +25,7 @@
     </div>
     <div v-observe-visibility="handleVisibility"></div>
     <div v-if="!$subReady.notes" class="loading">Loading...</div>
-    <div>{{ firstNote }}</div>
+    <div>First: {{ firstNote }}</div>
   </div>
 </template>
 
@@ -34,7 +37,7 @@ export default {
   data () {
     return {
       newNote: '',
-      limit: 5,
+      search: '',
       sort: true,
     }
   },
@@ -42,7 +45,7 @@ export default {
   meteor: {
     $subscribe: {
       'notes' () {
-        return [this.limit]
+        return [this.search]
       },
     },
     notes () {
@@ -60,7 +63,11 @@ export default {
 
   watch: {
     '$subReady.notes' (value) {
-      console.log(value)
+      console.log('notes sub ready', value)
+    },
+
+    notes (value) {
+      console.log('length', value.length)
     },
   },
 

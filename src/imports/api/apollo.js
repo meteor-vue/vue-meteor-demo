@@ -1,4 +1,6 @@
-import { ApolloClient, createNetworkInterface } from 'apollo-client'
+import { ApolloClient } from 'apollo-client'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 
 // Create the apollo client
 export function createApolloClient (ssr = false) {
@@ -12,15 +14,21 @@ export function createApolloClient (ssr = false) {
     console.log(initialState)
   }
 
+  const httpLink = new HttpLink({
+    uri: 'https://api.graph.cool/simple/v1/cj1jvw20v3n310152sv0sirl7'
+  })
+
+  const cache = new InMemoryCache()
+  if (initialState) cache.restore(initialState)
+
   const apolloClient = new ApolloClient({
-    networkInterface: createNetworkInterface({
-      uri: 'https://api.graph.cool/simple/v1/cj1jvw20v3n310152sv0sirl7',
-      transportBatching: true,
-    }),
+    link: httpLink,
+    cache,
+    connectToDevTools: Meteor.isDevelopment,
     ...(ssr ? {
       ssrMode: true,
     } : {
-      initialState,
+      // This will temporary disable query force-fetching
       ssrForceFetchDelay: 100,
     }),
   })

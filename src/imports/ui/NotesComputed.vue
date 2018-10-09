@@ -7,6 +7,9 @@
     <div class="actions">
       <button @click="sort = !sort">Toggle sort</button>
     </div>
+    <div>
+      <input v-model="search" placeholder="Search...">
+    </div>
     <div class="notes">
       <div v-for="note in notes" class="note" :class="{ many: notes.length > 1 }">
         <div class="text">{{ note.text }}</div>
@@ -18,7 +21,7 @@
     </div>
     <div v-observe-visibility="handleVisibility"></div>
     <div v-if="!$subReady.notes" class="loading">Loading...</div>
-    <div>{{ firstNote }}</div>
+    <div>First: {{ firstNote }}</div>
   </div>
 </template>
 
@@ -30,14 +33,14 @@ export default {
   data () {
     return {
       newNote: '',
-      limit: 5,
+      search: '',
       sort: true,
     }
   },
 
   created () {
     // Not SSR friendly (for now)
-    this.$subscribe('notes', () => [this.limit])
+    this.$subscribe('notes', () => [this.search])
   },
 
   computed: {
@@ -56,6 +59,10 @@ export default {
   watch: {
     '$subReady.notes' (value) {
       console.log(value)
+    },
+
+    notes (value) {
+      console.log('length', value.length)
     },
   },
 

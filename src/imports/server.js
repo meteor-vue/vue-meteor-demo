@@ -1,7 +1,10 @@
 import './api/publications'
 
+import Vue from 'vue'
+import ApolloSSR from 'vue-apollo/ssr'
 import { VueSSR } from 'meteor/akryum:vue-ssr'
 import CreateApp from './app'
+import App from './ui/App.vue'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -9,14 +12,15 @@ const isDev = process.env.NODE_ENV !== 'production'
 // Simple createApp
 VueSSR.createApp = function (context) {
   const { app, router, store } = CreateApp()
-
+  
   // set router's location
   router.push(context.url)
-
+  
   return app
 }
 */
 
+Vue.use(ApolloSSR)
 
 // This will be called each time the app is rendered
 VueSSR.createApp = function (context) {
@@ -45,18 +49,19 @@ VueSSR.createApp = function (context) {
       // A preFetch hook dispatches a store action and returns a Promise,
       // which is resolved when the action is complete and store state has been
       // updated.
-      Promise.all([
-        // Store prefetch
-        ...matchedComponents.map(component => {
-          return component.preFetch && component.preFetch(store)
-        }),
-        // Apollo prefetch
-        apolloProvider.prefetchAll({
-          /* Context object */
+      // Vuex Store prefetch
+      Promise.all(matchedComponents.map(component => {
+        return component.asyncData && component.asyncData({
+          store,
           route: router.currentRoute,
-          // You could also add the store here
-        }, matchedComponents),
-      ]).then(() => {
+        })
+      }))
+      // Apollo prefetch
+      // This will prefetch all the Apollo queries in the whole app
+      .then(() => ApolloSSR.prefetchAll(apolloProvider, [App, ...matchedComponents], {
+        store,
+        route: router.currentRoute,
+      })).then(() => {
         isDev && console.log(`[SSR] Data prefetch: ${Date.now() - s}ms`)
 
         // After all preFetch hooks are resolved, our store is now
@@ -68,7 +73,7 @@ VueSSR.createApp = function (context) {
 
         js += `window.__INITIAL_STATE__=${JSON.stringify(store.state)};`
 
-        js += apolloProvider.exportStates()
+        js += ApolloSSR.exportStates(apolloProvider)
 
         resolve({
           app,

@@ -1,10 +1,19 @@
 import { Meteor } from 'meteor/meteor'
 import { Notes, Items } from './collections'
 
-Meteor.publish('notes', function (limit) {
-  return Notes.find({}, {
+Meteor.publish('notes', function (filter) {
+  let selector
+  if (filter) {
+    selector = {
+      $text: {
+        $search: filter,
+      },
+    }
+  } else {
+    selector = {}
+  }
+  return Notes.find(selector, {
     sort: { created: -1 },
-    limit,
   })
 })
 
