@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div v-observe-visibility="handleVisibility"></div>
+    <div v-if="!$isServer" v-observe-visibility="handleVisibility"></div>
     <div v-if="!$subReady.notes" class="loading">Loading...</div>
     <div>First: {{ firstNote }}</div>
   </div>

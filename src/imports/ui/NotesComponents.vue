@@ -28,7 +28,7 @@
             </div>
           </template>
         </MeteorData>
-        <div v-observe-visibility="handleVisibility"></div>
+        <div v-if="!$isServer" v-observe-visibility="handleVisibility"></div>
         <div v-if="loading" class="loading">Loading...</div>
       </template>
     </MeteorSub>
