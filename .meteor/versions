@@ -2,13 +2,13 @@ accounts-base@1.4.3
 accounts-password@1.5.1
 akryum:npm-check@0.1.1
 akryum:vue-coffee@0.4.1
-akryum:vue-component@0.14.2
-akryum:vue-component-dev-client@0.4.4
+akryum:vue-component@0.14.3
+akryum:vue-component-dev-client@0.4.5
 akryum:vue-component-dev-server@0.1.3
 akryum:vue-less@0.1.1
 akryum:vue-pug@0.1.1
 akryum:vue-sass@0.1.1
-akryum:vue-ssr@0.3.2
+akryum:vue-ssr@0.3.3
 akryum:vue-stylus@0.1.1
 aldeed:simple-schema@1.5.4
 allow-deny@1.1.0
