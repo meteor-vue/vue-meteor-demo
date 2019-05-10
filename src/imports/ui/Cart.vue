@@ -1,5 +1,5 @@
 <template>
-  <transition name="right-panel" duration="500">
+  <transition name="right-panel" duration="500" appear>
     <div class="cart-overlay">
       <div class="backdrop" @click="close" />
       <div class="panel" :class="$style.cart">

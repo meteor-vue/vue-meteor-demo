@@ -43,7 +43,7 @@ VueSSR.createApp = function (context) {
         reject({ code: 404 })
       }
 
-      let js = ''
+      context.js = ''
 
       // Call preFetch hooks on components matched by the route.
       // A preFetch hook dispatches a store action and returns a Promise,
@@ -55,30 +55,22 @@ VueSSR.createApp = function (context) {
           store,
           route: router.currentRoute,
         })
-      }))
-      // Apollo prefetch
-      // This will prefetch all the Apollo queries in the whole app
-      .then(() => ApolloSSR.prefetchAll(apolloProvider, [App, ...matchedComponents], {
-        store,
-        route: router.currentRoute,
       })).then(() => {
-        isDev && console.log(`[SSR] Data prefetch: ${Date.now() - s}ms`)
+        context.rendered = () => {
+          isDev && console.log(`[SSR] Data prefetch: ${Date.now() - s}ms`)
 
-        // After all preFetch hooks are resolved, our store is now
-        // filled with the state needed to render the app.
-        // Expose the state on the render context, and let the request handler
-        // inline the state in the HTML response. This allows the client-side
-        // store to pick-up the server-side state without having to duplicate
-        // the initial data fetching on the client.
+          // After all preFetch hooks are resolved, our store is now
+          // filled with the state needed to render the app.
+          // Expose the state on the render context, and let the request handler
+          // inline the state in the HTML response. This allows the client-side
+          // store to pick-up the server-side state without having to duplicate
+          // the initial data fetching on the client.
 
-        js += `window.__INITIAL_STATE__=${JSON.stringify(store.state)};`
+          context.js += `window.__INITIAL_STATE__=${JSON.stringify(store.state)};`
+          context.js += ApolloSSR.exportStates(apolloProvider)
 
-        js += ApolloSSR.exportStates(apolloProvider)
-
-        resolve({
-          app,
-          js,
-        })
+        }
+        resolve(app)
       }).catch(reject)
     })
   })
