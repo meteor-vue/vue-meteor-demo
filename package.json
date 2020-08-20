@@ -10,7 +10,7 @@
     "apollo-client": "^2.5.1",
     "apollo-link": "^1.2.11",
     "apollo-link-http": "^1.5.14",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "core-js": "^3.0.1",
     "graphql": "^14.3.0",
     "graphql-tag": "^2.10.1",
