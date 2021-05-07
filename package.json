@@ -16,7 +16,7 @@
     "graphql-tag": "^2.10.1",
     "intersection-observer": "^0.6.0",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "marker-clusterer-plus": "^2.1.4",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.24.0",
