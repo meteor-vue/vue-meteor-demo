@@ -19,7 +19,7 @@
     "lodash": "^4.17.15",
     "marker-clusterer-plus": "^2.1.4",
     "meteor-node-stubs": "^0.4.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "vue": "2.6.10",
     "vue-apollo": "^3.0.0-beta.29",
     "vue-googlemaps": "^0.1.2",
