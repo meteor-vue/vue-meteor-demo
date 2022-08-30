@@ -1,27 +1,30 @@
 <template>
   <div class="apollo">
-    <div class="posts">
-      <div v-for="post of allPosts" class="post">
-        <div class="img">
-          <img :src="post.imageUrl" :alt="post.description" />
-        </div>
-        <div class="description" v-text="post.description"></div>
-      </div>
+    <div class="pokemons">
+      <Pokemon
+        v-for="pokemon of pokemons"
+        :key="pokemon.id"
+        :pokemon="pokemon"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import gql from 'graphql-tag'
+import Pokemon from './Pokemon.vue'
 
 const mixin = {
   apollo: {
-    allPosts: {
-      query: gql`query allPosts {
-        allPosts {
+    pokemons: {
+      query: gql`query pokemons {
+        pokemons: pokemon_v2_pokemon (limit: 15) {
           id
-          imageUrl
-          description
+          name
+          sprites: pokemon_v2_pokemonsprites {
+            id
+            sprites
+          }
         }
       }`,
       prefetch: true,
@@ -30,20 +33,18 @@ const mixin = {
 }
 
 export default {
+  components: {
+    Pokemon,
+  },
+
   mixins: [mixin],
 }
 </script>
 
-<style lang="less" scoped>
-.post {
-  padding: 32px 0;
-
-  &:not(:last-child) {
-    border-bottom: solid 1px fade(black, 10%);
-  }
-
-  img {
-    max-width: 100%;
-  }
+<style scoped>
+.pokemons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
 }
 </style>

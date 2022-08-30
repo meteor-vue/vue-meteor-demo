@@ -15,7 +15,7 @@ export function createApolloClient (ssr = false) {
   }
 
   const httpLink = new HttpLink({
-    uri: 'https://api.graph.cool/simple/v1/cj1jvw20v3n310152sv0sirl7'
+    uri: 'https://beta.pokeapi.co/graphql/v1beta/'
   })
 
   const cache = new InMemoryCache()
